@@ -9,7 +9,7 @@ const OuterSidebar = ({ activeIcon, setActiveIcon }) => {
     return (
         <aside className="w-16 h-screen bg-blue-50 flex flex-col items-center p-4">
             <div className="flex-1 space-y-4">
-                <Image src={logoImg} alt="Logo" width={32} height={32} />
+                <Image src={logoImg} alt="Logo" width={40} height={40} />
                 <button
                     onClick={() => setActiveIcon('home')}
                     className={"text-gray-600 p-2 rounded-3xl hover:bg-blue-500 hover:text-white"}

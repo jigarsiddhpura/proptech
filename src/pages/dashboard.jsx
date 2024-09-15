@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bell, ChevronLeft, Edit, Home, Users, Mail, Phone, MapPin } from 'lucide-react';
+import { Bell, ChevronLeft, Edit, MapPin } from 'lucide-react';
 
 // Import all images
 import avatarImg from '../images/avatar.png';
@@ -8,10 +8,8 @@ import building2Img from '../images/building2.png';
 import building3Img from '../images/building3.png';
 import building4Img from '../images/building4.png';
 import hdfcLogoImg from '../images/hdfc-logo.png';
-import contactAvatarImg from '../images/contact-avatar.png';
-import maleEngineer from '../images/male-engineer.png';
-import infraIllustration from '../images/infra-illustration.png';
 import AvatarCirclesDemo from '../components/AvatarCircles';
+import ModuleSelector from '../components/ModuleSelector';
 
 import {Image} from '../utils/Image'
 import Sidebar from '../components/Sidebar'
@@ -45,45 +43,6 @@ const ImageGallery = () => {
     );
 };
 
-const StatCard = ({ icon, title, value, unit }) => (
-    <div className="bg-white p-4 rounded-lg shadow">
-        <Image src={icon} alt={icon} size={24} />
-        <h3 className="text-sm text-gray-500 mt-2">{title}</h3>
-        <p className="text-2xl font-bold">
-            {value} <span className="text-sm font-normal">{unit}</span>
-        </p>
-    </div>
-);
-
-const ContactCard = () => (
-    <div className="bg-white p-6 rounded-2xl shadow-lg max-w-md">
-        <h3 className="font-semibold text-lg mb-6">Point Of Contact</h3>
-        <div className="flex items-center mb-6">
-            <Image src={contactAvatarImg} alt="Contact Avatar" width={48} height={48} className="rounded-full mr-4" />
-            <div>
-                <p className="font-semibold text-lg">Prakash Raj</p>
-                <span className="text-xs bg-orange-100 text-orange-500 px-2 py-1 rounded">Site Admin</span>
-            </div>
-        </div>
-        <div className="space-y-4">
-            <div className="flex items-center">
-                <Mail className="w-5 h-5 text-gray-400 mr-3" />
-                <p className="text-sm">Prakashraj@fmx.com</p>
-            </div>
-            <div className="flex items-center">
-                <Phone className="w-5 h-5 text-gray-400 mr-3" />
-                <p className="text-sm">+91-9000900091</p>
-            </div>
-            <div className="flex">
-                <MapPin className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0 mt-1" />
-                <p className="text-sm text-gray-500">
-                    11th & 12th Floor, Raheja Towers, above Yautcha restaurant, G Block BKC, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra 400051
-                </p>
-            </div>
-        </div>
-    </div>
-);
-
 export default function Dashboard() {
     return (
         <div className="flex h-screen bg-gray-100">
@@ -116,35 +75,7 @@ export default function Dashboard() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-6 gap-6">
-                        {/* Stats Section */}
-                        <div className="col-span-4 grid grid-cols-4 gap-6">
-                            <StatCard icon={infraIllustration} title="Total Area" value="1200" unit="Sq. Ft" />
-                            <StatCard icon={infraIllustration} title="Total Buildings" value="10" unit="" />
-                            <StatCard icon={infraIllustration} title="Total Users" value="5000" unit="+" />
-                            <StatCard icon={infraIllustration} title="Total Vendors" value="55" unit="" />
-                        </div>
-
-                        {/* Contact Card */}
-                        <div className="row-span-2 col-span-2">
-                            <ContactCard />
-                        </div>
-
-                        {/* Setup Site Infrastructure */}
-                        <div className="col-span-4 bg-blue-100 p-6 rounded-lg flex justify-between items-center ">
-                            <div>
-                                <h3 className="font-semibold text-lg mb-2">Setup Site Infrastructure</h3>
-                                <p className="text-sm text-gray-600 mb-4">Setup Site Infrastructure</p>
-                                <button className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center">
-                                    Setup Infra
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <Image src={maleEngineer} alt="male-engineer" width={200} height={150} />
-                        </div>
-                    </div>
+                    <ModuleSelector/>
                 </main>
             </div>
         </div>

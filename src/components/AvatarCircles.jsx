@@ -1,8 +1,8 @@
 import React from 'react';
 import coupon1 from '../images/coupon1.png'
 import coupon2 from '../images/coupon2.png'
-import coupon3 from '../images/coupon3.png'
-import coupon4 from '../images/coupon4.png'
+import Helpdesk from '../images/Helpdesk.png'
+import GatePass from '../images/GatePass.png'
 
 const AvatarCircles = ({ numCoupons, coupons }) => {
     const maxVisibleCoupons = 4;
@@ -17,11 +17,6 @@ const AvatarCircles = ({ numCoupons, coupons }) => {
                     className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
                 >
                     <img src={url} alt="Coupon" className="h-full w-full object-cover"/>
-                    {/* <img
-                        src={`coupons[${index + 1}]`}
-                        alt={`Coupon ${index + 1}`}
-                        className="h-full w-full object-cover rounded-full"
-                    /> */}
                 </div>
             ))}
             {remainingCount > 0 && (
@@ -34,7 +29,7 @@ const AvatarCircles = ({ numCoupons, coupons }) => {
 };
 
 const AvatarCirclesDemo = () => {
-    const coupons = [coupon1, coupon2, coupon3, coupon4];
+    const coupons = [coupon1, coupon2, Helpdesk, GatePass];
 
     return <AvatarCircles numCoupons={9} coupons={coupons} />;
 };
