@@ -2,7 +2,6 @@ import React from 'react';
 import { Bell, ChevronLeft, Edit, Home, Users, Mail, Phone, MapPin } from 'lucide-react';
 
 // Import all images
-import logoImg from '../images/logo.png';
 import avatarImg from '../images/avatar.png';
 import building1Img from '../images/building1.png';
 import building2Img from '../images/building2.png';
@@ -12,42 +11,19 @@ import hdfcLogoImg from '../images/hdfc-logo.png';
 import contactAvatarImg from '../images/contact-avatar.png';
 import maleEngineer from '../images/male-engineer.png';
 import infraIllustration from '../images/infra-illustration.png';
+import AvatarCirclesDemo from '../components/AvatarCircles';
 
-// Updated Image component
-const Image = ({ src, alt, ...props }) => {
-    return <img src={src} alt={alt} {...props} />;
-};
-
-const Sidebar = () => (
-    <aside className="w-60 bg-white border-r border-gray-200 h-screen p-4">
-        <div className="flex items-center mb-8">
-            <Image src={logoImg} alt="Logo" width={32} height={32} />
-            <span className="ml-2 text-xl font-semibold">Punctualiti</span>
-        </div>
-        <nav>
-            <ul className="space-y-2">
-                <li>
-                    <a href="#" className="flex items-center p-2 text-gray-600 hover:bg-blue-50 rounded">
-                        <Home className="mr-2" size={20} />
-                        STAKEHOLDERS
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="flex items-center p-2 text-white bg-blue-600 rounded">
-                        <Users className="mr-2" size={20} />
-                        Sites
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
-);
+import {Image} from '../utils/Image'
+import Sidebar from '../components/Sidebar'
 
 const Header = () => (
-    <header className="bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+    <header className="p-4 flex justify-between items-center">
         <div className="flex items-center">
             <ChevronLeft className="mr-2" size={20} />
-            <span className="text-sm text-gray-500">Sites / HDFC</span>
+            <div className='flex flex-col'>
+                <span className="text-lg font-bold">HDFC</span>
+                <span className="text-xs text-gray-500 font-semibold">Sites / HDFC</span>
+            </div>
         </div>
         <div className="flex items-center">
             <Bell className="mr-4" size={20} />
@@ -59,7 +35,7 @@ const Header = () => (
 const ImageGallery = () => {
     const buildingImages = [building1Img, building2Img, building3Img, building4Img];
     return (
-        <div className="flex space-x-4 mb-6">
+        <div className="flex space-x-2 mb-6">
             {buildingImages.map((img, i) => (
                 <div key={i} className="relative w-1/4 h-48 bg-gray-200 rounded-lg overflow-hidden">
                     <Image src={img} alt={`Building ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -114,25 +90,35 @@ export default function Dashboard() {
             <Sidebar />
             <div className="flex-1 overflow-auto">
                 <Header />
-                <main className="p-6">
-                    <ImageGallery />
-                    <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center">
-                            <Image src={hdfcLogoImg} alt="HDFC Logo" width={48} height={48} className="mr-4" />
-                            <div>
-                                <h1 className="text-2xl font-bold">HDFC</h1>
-                                <p className="text-sm text-gray-500">Housing Development Finance Corporation</p>
-                                <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Client</span>
+                <main className="px-6">
+                    <div className='p-6 gap-6 rounded-lg bg-white mb-2'>
+                        <ImageGallery />
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                                <Image src={hdfcLogoImg} alt="HDFC Logo" width={80} height={80} className="mr-4" />
+                                <div>
+                                    <h1 className="text-2xl font-bold">HDFC</h1>
+                                    <p className="text-sm text-gray-500 py-1">Housing Development Finance Corporation</p>
+                                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Client</span>
+                                    <div className="flex items-center text-xs text-gray-500 py-2">
+                                        <MapPin size={12} className="mr-1" />
+                                        India, U.S.A, South Africa, Canada, Australia
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex flex-col justify-between h-full'>
+                                <button className="flex justify-center items-center text-blue-600 rounded-3xl p-3    bg-slate-200 mb-6">
+                                    <Edit size={16} className="mr-1" />
+                                    Edit Profile
+                                </button>
+                                <AvatarCirclesDemo />
                             </div>
                         </div>
-                        <button className="flex items-center text-blue-600">
-                            <Edit size={16} className="mr-1" />
-                            Edit Profile
-                        </button>
                     </div>
+
                     <div className="grid grid-cols-6 gap-6">
                         {/* Stats Section */}
-                        <div className="col-span-4 grid grid-cols-4 gap-6 bg-cyan-300">
+                        <div className="col-span-4 grid grid-cols-4 gap-6">
                             <StatCard icon={infraIllustration} title="Total Area" value="1200" unit="Sq. Ft" />
                             <StatCard icon={infraIllustration} title="Total Buildings" value="10" unit="" />
                             <StatCard icon={infraIllustration} title="Total Users" value="5000" unit="+" />
@@ -140,12 +126,12 @@ export default function Dashboard() {
                         </div>
 
                         {/* Contact Card */}
-                        <div className="row-span-2 bg-red-400 col-span-2">
+                        <div className="row-span-2 col-span-2">
                             <ContactCard />
                         </div>
 
                         {/* Setup Site Infrastructure */}
-                        <div className="col-span-4 bg-blue-200 p-6 rounded-lg flex justify-between items-center ">
+                        <div className="col-span-4 bg-blue-100 p-6 rounded-lg flex justify-between items-center ">
                             <div>
                                 <h3 className="font-semibold text-lg mb-2">Setup Site Infrastructure</h3>
                                 <p className="text-sm text-gray-600 mb-4">Setup Site Infrastructure</p>
