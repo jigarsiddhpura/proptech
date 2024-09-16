@@ -38,7 +38,8 @@ const ContactCard = () => (
                 <span className="text-xs bg-orange-100 text-orange-500 px-2 py-1 rounded">Site Admin</span>
             </div>
         </div>
-        <div className="space-y-4">
+        <hr />
+        <div className="space-y-4 py-4">
             <div className="flex items-center">
                 <Mail className="w-5 h-5 text-gray-400 mr-3" />
                 <p className="text-sm">Prakashraj@fmx.com</p>
@@ -47,6 +48,9 @@ const ContactCard = () => (
                 <Phone className="w-5 h-5 text-gray-400 mr-3" />
                 <p className="text-sm">+91-9000900091</p>
             </div>
+        </div>
+        <hr/>
+        <div className="space-y-4 py-4">
             <div className="flex">
                 <MapPin className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0 mt-1" />
                 <p className="text-sm text-gray-500">
@@ -63,7 +67,7 @@ const ModuleCard = ({ icon, title, isSelected, onToggle }) => (
             <img src={icon} alt={title} className="w-8 h-8 mr-2" />
             <Checkbox color="primary" isSelected={isSelected} onChange={onToggle} className={`rounded-2xl size-10 border-2 ${isSelected ? "border-blue-500" : ""}`} />
         </div>
-        <div className="flex justify-between w-full"> 
+        <div className="flex justify-between w-full">
             <span className={`font-semibold text-sm mr-2 ${isSelected ? "text-blue-500" : ""}`}>{title}</span>
             <InfoIcon className="w-5 h-5 text-gray-400" />
         </div>
@@ -134,11 +138,12 @@ export default function ModuleSelector() {
                             <ContactCard />
                         </div>
                         {/* Setup Site Infrastructure */}
-                        <div className="col-span-4 bg-blue-100 p-6 rounded-lg flex justify-between items-center ">
+                        <div className="col-span-4 bg-blue-100 p-8 rounded-lg flex justify-between items-center h-[70%]">
                             <div>
                                 <h3 className="font-semibold text-lg mb-2">Setup Site Infrastructure</h3>
                                 <p className="text-sm text-gray-600 mb-4">Setup Site Infrastructure</p>
-                                <Button color="primary">
+                                <Button className='bg-blue-700 rounded text-white text-sm'>
+                                    {/* <span className='text-sm'>Setup Infra</span> */}
                                     Setup Infra
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                                         <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
