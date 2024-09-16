@@ -98,12 +98,11 @@ export default function ModuleSelector() {
             .filter(([_, isSelected]) => isSelected)
             .map(([id, _]) => modules.find(module => module.id === id).title)
 
-        const siteDetails = {
-            // Add site details here
-            selectedModules: selectedModuleNames
+        if (selectedModuleNames.length > 0) {
+            alert(`Selected modules: ${selectedModuleNames.join(', ')}`)
+        } else {
+            alert('No modules selected')
         }
-
-        alert(siteDetails);
     }
 
     return (
@@ -167,8 +166,8 @@ export default function ModuleSelector() {
                             />
                         ))}
                     </div>
-                    <div className="mt-6 flex justify-end">
-                        <Button onClick={handleSubmit}>Submit</Button>
+                    <div className="mt-6 flex justify-end ">
+                        <Button onClick={handleSubmit} className='rounded-3xl bg-blue-300'>Submit</Button>
                     </div>
                 </Tab>
             </Tabs>
