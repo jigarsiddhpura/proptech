@@ -1,32 +1,44 @@
 import React, { useState } from 'react'
-import { HiOutlineHome, HiOutlineUser, HiOutlineCreditCard, HiOutlineOfficeBuilding, HiOutlineUserGroup, HiOutlineUsers } from 'react-icons/hi'
-import { FiSettings, FiHelpCircle } from 'react-icons/fi'
+import { HiOutlineHome } from 'react-icons/hi'
+import { FiSettings, FiHelpCircle, FiUsers  } from 'react-icons/fi'
+import { BsCurrencyRupee  } from 'react-icons/bs'
 import logoImg from '../images/logo.png';
 import avatarImg from '../images/avatar.png'
 import { Image } from '../utils/Image';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const OuterSidebar = ({ activeIcon, setActiveIcon }) => {
+const OuterSidebar = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleClick = (path) => {
+        navigate(path);
+    }
+
+    const isActive = (path) => location.pathname === path;
+    const buttonClass = (path) => `text-gray-600 p-2 rounded-3xl ${isActive(path) ? 'bg-blue-500 text-white' : 'hover:bg-blue-200 hover:text-white'}`
+
     return (
         <aside className="w-16 h-screen bg-blue-50 flex flex-col items-center p-4">
             <div className="flex-1 space-y-4">
                 <Image src={logoImg} alt="Logo" width={40} height={40} />
                 <button
-                    onClick={() => setActiveIcon('home')}
-                    className={"text-gray-600 p-2 rounded-3xl hover:bg-blue-500 hover:text-white"}
+                    onClick={() => handleClick('/home')}
+                    className={buttonClass('/home')}
                 >
-                    <HiOutlineHome className="w-6 h-6" />
+                    <HiOutlineHome className="w-5 h-5" />
                 </button>
                 <button
-                    onClick={() => setActiveIcon('profile')}
-                    className={"text-gray-600 p-2 rounded-3xl hover:bg-blue-500 hover:text-white"}
+                    onClick={() => handleClick('/billing')}
+                    className={buttonClass('/billing')}
                 >
-                    <HiOutlineUser className="w-6 h-6" />
+                    <BsCurrencyRupee className="w-5 h-5" />
                 </button>
                 <button
-                    onClick={() => setActiveIcon('billing')}
-                    className={"text-gray-600 p-2 rounded-3xl hover:bg-blue-500 hover:text-white"}
+                    onClick={() => handleClick('/')}
+                    className={buttonClass('/')}
                 >
-                    <HiOutlineCreditCard className="w-6 h-6" />
+                    <FiUsers className="w-5 h-5" />
                 </button>
             </div>
             <div className="space-y-4">
@@ -44,7 +56,7 @@ const OuterSidebar = ({ activeIcon, setActiveIcon }) => {
     )
 }
 
-const InnerSidebar = ({ activeItem, setActiveItem }) => {
+const InnerSidebar = () => {
     return (
         <aside className="w-60 h-screen bg-white border-r border-gray-200 flex flex-col">
             <div className="p-4">
@@ -55,22 +67,13 @@ const InnerSidebar = ({ activeItem, setActiveItem }) => {
                 <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Stakeholders</h2>
             </div>
             <nav className="flex-1 overflow-y-auto p-2">
-                <button
-                    onClick={() => setActiveItem('sites')}
-                    className={"flex items-center w-full px-6 py-2 text-sm font-medium hover:bg-blue-400 hover:text-white rounded-xl "}
-                >
+                <button className={"flex items-center w-full px-6 py-2 text-sm font-medium hover:bg-blue-400 hover:text-white rounded-xl "}>
                     Sites
                 </button>
-                <button
-                    onClick={() => setActiveItem('users')}
-                    className={"flex items-center w-full px-6 py-2 text-sm font-medium hover:bg-blue-400 hover:text-white rounded-xl "}
-                >
+                <button className={"flex items-center w-full px-6 py-2 text-sm font-medium hover:bg-blue-400 hover:text-white rounded-xl "}>
                     Users
                 </button>
-                <button
-                    onClick={() => setActiveItem('external-users')}
-                    className={"flex items-center w-full px-6 py-2 text-sm font-medium hover:bg-blue-400 hover:text-white rounded-xl "}
-                >
+                <button className={"flex items-center w-full px-6 py-2 text-sm font-medium hover:bg-blue-400 hover:text-white rounded-xl "}>
                     External Users
                 </button>
             </nav>
@@ -88,13 +91,17 @@ const InnerSidebar = ({ activeItem, setActiveItem }) => {
 }
 
 const Sidebar = () => {
-    const [activeIcon, setActiveIcon] = useState('profile')
-    const [activeItem, setActiveItem] = useState('sites')
+    const location = useLocation();
 
     return (
         <div className="flex">
-            <OuterSidebar activeIcon={activeIcon} setActiveIcon={setActiveIcon} />
-            <InnerSidebar activeItem={activeItem} setActiveItem={setActiveItem} />
+            <OuterSidebar />
+            {
+                location.pathname === '/' ? 
+                <InnerSidebar />
+                :
+                <></>
+            }
         </div>
     )
 }
