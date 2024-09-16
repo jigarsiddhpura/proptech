@@ -25,7 +25,7 @@ const ImageGallery = () => {
 };
 
 
-export default function Dashboard() {
+export const Profile = () => {
     return (
         <main className="px-6">
             <div className='p-6 gap-6 rounded-lg bg-white mb-2'>
